@@ -24,6 +24,10 @@ getMyOptimeDate = function() {
 }
 
 getReplicationLag = function() {
+  var members = rs.status().members;
+  if(!members) {
+    return null;
+  }
   return ((getPrimaryOptimeDate() - getMyOptimeDate()) / 1000);
 }
 

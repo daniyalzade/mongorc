@@ -33,8 +33,12 @@ getReplicationLag = function() {
 
 summary = function() {
   var uptime = db.serverStatus().uptime;
-  var setName = db.serverStatus().repl.setName;
-  var primary = db.serverStatus().repl.primary;
+  var setName;
+  var primary;
+  if(db.serverStatus().repl){
+    setName = db.serverStatus().repl.setName;
+    primary = db.serverStatus().repl.primary;
+  }
   var replag = getReplicationLag();
   var curConnections = db.serverStatus().connections.current;
   var resMem = db.serverStatus().mem.resident;
